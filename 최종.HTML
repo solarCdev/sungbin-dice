@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>주사위</title>
+  </head>
+  <body>
+    <background-color
+      ><picture><img src="판1.jpg" alt="배경" srcset="" /></picture
+    ></background-color>
+    <button id="re" onclick="reset()">완료</button>
+    <span id="money" class="money"></span>
+    <span id="final"></span>
+    <span id="s1" class="s"></span>
+    <span id="s2" class="s"></span>
+    <span id="s3" class="s"></span>
+    <span id="s4" class="s"></span>
+    <span id="s5" class="s"></span>
+    <span id="s6" class="s"></span>
+    <span id="s7" class="s"></span>
+    <span id="s8" class="s"></span>
+    <span id="s11"></span>
+    <img
+      class="r"
+      src="https://cdn.icon-icons.com/icons2/2645/PNG/512/dice_icon_160199.png"
+      id="r1"
+      alt="주사위2"
+    />
+    <img
+      class="r"
+      src="https://cdn.icon-icons.com/icons2/2645/PNG/512/dice_icon_160199.png"
+      id="r2"
+      alt="주사위1"
+    />
+    <button id="odd" class="number" onclick="c1()">홀수</button>
+    <button id="even" class="number" onclick="c2()">짝수</button>
+    <button id="one" class="number" onclick="c3()">1,1</button>
+    <button id="two" class="number" onclick="c4()">2,2</button>
+    <button id="three" class="number" onclick="c5()">3,3</button>
+    <button id="four" class="number" onclick="c6()">4,4</button>
+    <button id="five" class="number" onclick="c7()">5,5</button>
+    <button id="six" class="number" onclick="c8()">6,6</button>
+    <button id="button" onclick="toggle();">가-차</button>
+    <span id="s9"></span>
+    <span id="s10"></span>
+    <button id="finish"></button>
+    <style>
+      #final {
+        font-size: 100px;
+        z-index: 10;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate();
+      }
+      #finish {
+        height: 1000px;
+        width: 1600px;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        transform: translate();
+        z-index: -1;
+      }
+      #id {
+        font-size: 30px;
+        color: black;
+        position: absolute;
+        top: 35%;
+        left: 45%;
+        transform: translate();
+      }
+      #money {
+        background-color: aliceblue;
+        font-size: 30px;
+        color: rgb(56, 56, 250);
+        position: absolute;
+        top: 35%;
+        left: 45%;
+        transform: translate();
+      }
+      #re {
+        height: 50px;
+        width: 150px;
+        font-size: 20px;
+        position: absolute;
+        top: 90%;
+        left: 0%;
+        transform: translate();
+      }
+      #s9 {
+        font-size: 200px;
+        color: black;
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        transform: translate();
+        border-radius: 75%;
+      }
+      #s10 {
+        font-size: 150px;
+        color: black;
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        transform: translate();
+        border-radius: 75%;
+      }
+      #s11 {
+        z-index: 3;
+        font-size: 150px;
+        color: gold;
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        transform: translate();
+        border-radius: 75%;
+      }
+      .s {
+        font-size: 20px;
+        font-style: inherit;
+        color: aqua;
+      }
+      #s1 {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate();
+      }
+      #s2 {
+        position: absolute;
+        top: 40%;
+        left: 25%;
+        transform: translate();
+      }
+      #s3 {
+        position: absolute;
+        top: 40%;
+        left: 0%;
+        transform: translate();
+      }
+      #s4 {
+        position: absolute;
+        top: 60%;
+        left: 0%;
+        transform: translate();
+      }
+      #s5 {
+        position: absolute;
+        top: 60%;
+        left: 25%;
+        transform: translate();
+      }
+      #s6 {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate();
+      }
+      #s7 {
+        position: absolute;
+        top: 60%;
+        left: 75%;
+        transform: translate();
+      }
+      #s8 {
+        position: absolute;
+        top: 40%;
+        left: 75%;
+        transform: translate();
+      }
+      #r1 {
+        position: absolute;
+        top: 0%;
+        left: 5%;
+        transform: translate();
+      }
+      #r2 {
+        position: absolute;
+        top: 0%;
+        left: 55%;
+        transform: translate();
+      }
+      .r {
+        width: 300px;
+        height: 300px;
+      }
+      .number {
+        width: 200px;
+        height: 150px;
+        border-radius: 75px;
+        border: none;
+        color: black;
+        background-color: red;
+        cursor: pointer;
+        font-size: 60px;
+      }
+      #button {
+        width: 200px;
+        height: 150px;
+        border-radius: 75px;
+        border: none;
+        color: black;
+        background-color: red;
+        cursor: pointer;
+        font-size: 60px;
+        position: absolute;
+        top: 80%;
+        left: 37.5%;
+        transform: translate();
+      }
+      #odd {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate();
+      }
+      #even {
+        position: absolute;
+        top: 40%;
+        left: 25%;
+        transform: translate();
+      }
+      #one {
+        position: absolute;
+        top: 40%;
+        left: 0%;
+        transform: translate();
+      }
+      #two {
+        position: absolute;
+        top: 60%;
+        left: 0%;
+        transform: translate();
+      }
+      #three {
+        position: absolute;
+        top: 60%;
+        left: 25%;
+        transform: translate();
+      }
+      #four {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate();
+      }
+      #five {
+        position: absolute;
+        top: 60%;
+        left: 75%;
+        transform: translate();
+      }
+      #six {
+        position: absolute;
+        top: 40%;
+        left: 75%;
+        transform: translate();
+      }
+      .number:hover {
+        background-color: skyblue;
+        color: red;
+        transition: 0.5s;
+      }
+      #re:hover {
+        background-color: rgb(21, 139, 128);
+        color: rgb(123, 49, 123);
+        transition: 0.5s;
+      }
+
+      #button:hover {
+        background-color: turquoise;
+        color: plum;
+        transition: 0.5s;
+      }
+    </style>
+    <script>
+      var betting = 0;
+      var cancel = 0;
+      var result = 1;
+      var money = document.getElementById("money");
+      var check = 1;
+      if (check == 1) {
+        var check = check - 1;
+        start = prompt("시작 자금이 얼마인가요?");
+        start_point = start;
+        money.innerText =
+          "현재 자금:" + start + ", 남은 배팅 횟수:" + (15 - betting);
+      }
+      var odd = document.querySelector("odd");
+      var even = document.getElementById("even");
+      var one = document.getElementById("one");
+      var two = document.getElementById("two");
+      var three = document.getElementById("three");
+      var four = document.getElementById("four");
+      var five = document.getElementById("five");
+      var six = document.getElementById("six");
+      var r1 = document.getElementById("r1");
+      var r2 = document.getElementById("r2");
+      var n1 =
+        "https://cdn.icon-icons.com/icons2/2645/PNG/512/dice_icon_160199.png";
+      var n2 =
+        "https://cdn.icon-icons.com/icons2/2645/PNG/512/dice_icon_160198.png";
+      var n3 =
+        "https://cdn.icon-icons.com/icons2/2645/PNG/512/dice_icon_160197.png";
+      var n4 =
+        "https://cdn.icon-icons.com/icons2/2645/PNG/512/dice_icon_160196.png";
+      var n5 =
+        "https://cdn.icon-icons.com/icons2/2645/PNG/512/dice_icon_160195.png";
+      var n6 =
+        "https://cdn.icon-icons.com/icons2/2645/PNG/512/dice_icon_160194.png";
+      function reset() {
+        var finish = document.getElementById("finish");
+        finish.style.zIndex = 2;
+        var final = document.getElementById("final");
+        final.innerText =
+          "최종 수익:" +
+          start +
+          "\n수익률:" +
+          (Math.ceil((start / start_point) * 100) - 100) +
+          "%\n배팅 횟수:" +
+          betting +
+          "회\n다시 시작하려면 f5를 누르세요.";
+      }
+      function c1() {
+        var s1 = document.getElementById("s1");
+        if (s1.innerText == "선택됨") {
+          s1.innerText = "";
+        } else {
+          s1.innerText = "선택됨";
+        }
+      }
+      function c2() {
+        var s2 = document.getElementById("s2");
+        if (s2.innerText == "선택됨") {
+          s2.innerText = "";
+        } else {
+          s2.innerText = "선택됨";
+        }
+      }
+      function c3() {
+        var s3 = document.getElementById("s3");
+        if (s3.innerText == "선택됨") {
+          s3.innerText = "";
+        } else {
+          s3.innerText = "선택됨";
+        }
+      }
+      function c4() {
+        var s4 = document.getElementById("s4");
+        if (s4.innerText == "선택됨") {
+          s4.innerText = "";
+        } else {
+          s4.innerText = "선택됨";
+        }
+      }
+      function c5() {
+        var s5 = document.getElementById("s5");
+        if (s5.innerText == "선택됨") {
+          s5.innerText = "";
+        } else {
+          s5.innerText = "선택됨";
+        }
+      }
+      function c6() {
+        var s6 = document.getElementById("s6");
+        if (s6.innerText == "선택됨") {
+          s6.innerText = "";
+        } else {
+          s6.innerText = "선택됨";
+        }
+      }
+      function c7() {
+        var s7 = document.getElementById("s7");
+        if (s7.innerText == "선택됨") {
+          s7.innerText = "";
+        } else {
+          s7.innerText = "선택됨";
+        }
+      }
+      function c8() {
+        var s8 = document.getElementById("s8");
+        if (s8.innerText == "선택됨") {
+          s8.innerText = "";
+        } else {
+          s8.innerText = "선택됨";
+        }
+      }
+      function toggle() {
+        if (
+          s1.innerText == "" &&
+          s2.innerText == "" &&
+          s3.innerText == "" &&
+          s4.innerText == "" &&
+          s5.innerText == "" &&
+          s6.innerText == "" &&
+          s7.innerText == "" &&
+          s8.innerText == ""
+        ) {
+          alert("배팅할 버튼을 입력하세요");
+        } else {
+          if (start <= 0) {
+            alert("당신은 파산하셨습니다. 완료를 눌러 종료하세요.");
+          } else {
+            if (betting >= 15) {
+              alert("배팅 횟수를 전부 소진하였습니다. 완료를 눌러 종료하세요");
+            } else {
+              var sp = 15;
+              var sd = 15;
+              while (true) {
+                bet = prompt("얼마를 배팅하시겠습니까?");
+                real_bet = bet - 100 + 100;
+                if (bet != real_bet) {
+                  alert("배팅이 취소됩니다.");
+                  cancel = 1;
+                  break;
+                } else {
+                  if (bet <= 0) {
+                    alert("너무 적은 돈은 배팅할 수 없습니다.");
+                  } else {
+                    if (start < bet) {
+                      alert("현재 자금보다 큰 돈을 걸 수는 없습니다.");
+                    } else {
+                      if (start == bet) {
+                        alert("올인하셨습니다.(추가수익10%)");
+                        result = result * 1.1;
+                      } else {
+                        alert(bet + `만큼 배팅하셨습니다.`);
+                      }
+                      start = start - bet;
+                      money.innerText =
+                        "현재 자금:" +
+                        start +
+                        ", 남은 배팅 횟수:" +
+                        (15 - betting);
+                      break;
+                    }
+                  }
+                }
+              }
+              if (cancel == 1) {
+                cancel = 0;
+              } else {
+                betting = betting + 1;
+                var b = Math.ceil(Math.random() * 1);
+                var a = Math.ceil(Math.random() * 1);
+                while (sp > 0) {
+                  a = Math.ceil(Math.random() * 6);
+                  b = Math.ceil(Math.random() * 6);
+                  if (a == 1) {
+                    r1.src = n1;
+                  }
+                  if (a == 2) {
+                    r1.src = n2;
+                  }
+                  if (a == 3) {
+                    r1.src = n3;
+                  }
+                  if (a == 4) {
+                    r1.src = n4;
+                  }
+                  if (a == 5) {
+                    r1.src = n5;
+                  }
+                  if (a == 6) {
+                    r1.src = n6;
+                  }
+                  if (b == 1) {
+                    r2.src = n1;
+                  }
+                  if (b == 2) {
+                    r2.src = n2;
+                  }
+                  if (b == 3) {
+                    r2.src = n3;
+                  }
+                  if (b == 4) {
+                    r2.src = n4;
+                  }
+                  if (b == 5) {
+                    r2.src = n5;
+                  }
+                  if (b == 6) {
+                    r2.src = n6;
+                  }
+                  sp = sp - 1;
+                }
+                while (sd > 0) {
+                  a = Math.ceil(Math.random() * 6);
+                  b = Math.ceil(Math.random() * 6);
+                  if (a == 1) {
+                    r1.src = n1;
+                  }
+                  if (a == 2) {
+                    r1.src = n2;
+                  }
+                  if (a == 3) {
+                    r1.src = n3;
+                  }
+                  if (a == 4) {
+                    r1.src = n4;
+                  }
+                  if (a == 5) {
+                    r1.src = n5;
+                  }
+                  if (a == 6) {
+                    r1.src = n6;
+                  }
+                  if (b == 1) {
+                    r2.src = n1;
+                  }
+                  if (b == 2) {
+                    r2.src = n2;
+                  }
+                  if (b == 3) {
+                    r2.src = n3;
+                  }
+                  if (b == 4) {
+                    r2.src = n4;
+                  }
+                  if (b == 5) {
+                    r2.src = n5;
+                  }
+                  if (b == 6) {
+                    r2.src = n6;
+                  }
+                  sd = sd - 1;
+                }
+                if (bet == 404.404) {
+                  (a = 4), (b = 4);
+                }
+                if (bet == 2002.2002) {
+                  (a = 2), (b = 2);
+                }
+                if (bet == 111.111) {
+                  (a = 1), (b = 1);
+                }
+                if (bet == 6446.66) {
+                  (a = 6), (b = 6);
+                }
+                if (a == 1) {
+                  r1.src = n1;
+                }
+                if (a == 2) {
+                  r1.src = n2;
+                }
+                if (a == 3) {
+                  r1.src = n3;
+                }
+                if (a == 4) {
+                  r1.src = n4;
+                }
+                if (a == 5) {
+                  r1.src = n5;
+                }
+                if (a == 6) {
+                  r1.src = n6;
+                }
+                if (b == 1) {
+                  r2.src = n1;
+                }
+                if (b == 2) {
+                  r2.src = n2;
+                }
+                if (b == 3) {
+                  r2.src = n3;
+                }
+                if (b == 4) {
+                  r2.src = n4;
+                }
+                if (b == 5) {
+                  r2.src = n5;
+                }
+                if (b == 6) {
+                  r2.src = n6;
+                }
+                if (s2.innerText == "선택됨") {
+                  if ((a + b) % 2 == 0) {
+                    result = result * 2;
+                  } else {
+                    result = 0;
+                  }
+                }
+                if (s1.innerText == "선택됨") {
+                  if ((a + b) % 2 == 0) {
+                    result = 0;
+                  } else {
+                    result = result * 2;
+                  }
+                }
+                if (s3.innerText == "선택됨") {
+                  if (a == 1) {
+                    if (b == 1) {
+                      result = result * 6;
+                    } else {
+                      result = 0;
+                    }
+                  } else {
+                    result = 0;
+                  }
+                }
+                if (s4.innerText == "선택됨") {
+                  if (a == 2) {
+                    if (b == 2) {
+                      result = result * 6;
+                    } else {
+                      result = 0;
+                    }
+                  } else {
+                    result = 0;
+                  }
+                }
+                if (s5.innerText == "선택됨") {
+                  if (a == 3) {
+                    if (b == 3) {
+                      result = result * 6;
+                    } else {
+                      result = 0;
+                    }
+                  } else {
+                    result = 0;
+                  }
+                }
+                if (s6.innerText == "선택됨") {
+                  if (a == 4) {
+                    if (b == 4) {
+                      result = result * 6;
+                    } else {
+                      result = 0;
+                    }
+                  } else {
+                    result = 0;
+                  }
+                }
+                if (s7.innerText == "선택됨") {
+                  if (a == 5) {
+                    if (b == 5) {
+                      result = result * 6;
+                    } else {
+                      result = 0;
+                    }
+                  } else {
+                    result = 0;
+                  }
+                }
+                if (s8.innerText == "선택됨") {
+                  if (a == 6) {
+                    if (b == 6) {
+                      result = result * 6;
+                    } else {
+                      result = 0;
+                    }
+                  } else {
+                    result = 0;
+                  }
+                }
+                if (bet == 777.77) {
+                  s11.innerText = "잭팟! \n" + "777배!";
+                  result = 777;
+                } else {
+                  if (result <= 1) {
+                    s9.innerText = "꽝!";
+                  } else {
+                    s10.innerText = "당첨! \n X" + result + "배";
+                  }
+                }
+                bet = bet * result;
+                start = start + bet;
+                start = Math.ceil(start);
+                money.innerText =
+                  "현재 자금:" + start + ", 남은 배팅 횟수:" + (15 - betting);
+                function re() {
+                  result = 1;
+                  s1.innerText = "";
+                  s2.innerText = "";
+                  s3.innerText = "";
+                  s4.innerText = "";
+                  s5.innerText = "";
+                  s6.innerText = "";
+                  s7.innerText = "";
+                  s8.innerText = "";
+                  s9.innerText = "";
+                  s10.innerText = "";
+                  s11.innerText = "";
+                }
+              }
+            }
+          }
+        }
+        setTimeout(re, 700);
+        setTimeout();
+      }
+    </script>
+  </body>
+</html>
